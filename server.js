@@ -2,14 +2,15 @@ var http = require('http'),
 express = require('express'),
 https = require('https'),
 socket = require('socket.io')(http),
-logger = require('winston');
+logger = require('winston'),
+port = 3001;
 
 logger.remove(new logger.transports.Console);
 logger.add(new logger.transports.Console({colorize: true, timestamp: true}));
-logger.info('SocketIO > listening on port ');
+logger.info('SocketIO > listening on port '+ port);
 
 var app = express();
-var http_server = http.createServer(app).listen(3001);
+var http_server = http.createServer(app).listen(port);
 
 function emitNewOrder(http_server)
 {
